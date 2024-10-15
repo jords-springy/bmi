@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif; /* Changed to a cleaner font */
+    font-family: 'Arial', sans-serif; /* Clean font for better readability */
     background-color: rgb(232, 194, 232);
     display: flex;
     align-items: center;
@@ -20,7 +20,7 @@ body {
 
 .heading {
     font-size: 2.5rem;
-    color: #6d42b1; /* A vibrant purple */
+    color: #6d42b1; /* Vibrant purple */
     margin-bottom: 20px;
 }
 
@@ -28,10 +28,11 @@ label {
     font-size: 1.1rem;
     color: #555;
     margin: 10px 0 5px;
+    display: block; /* Ensure labels take full width */
 }
 
 input[type="number"] {
-    width: 100%;
+    width: 100%; /* Full width to fit container */
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -39,6 +40,7 @@ input[type="number"] {
     font-size: 1rem;
     margin-bottom: 10px;
     transition: border-color 0.3s;
+    box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 input[type="number"]:focus {
