@@ -1,43 +1,55 @@
 document.addEventListener('DOMContentLoaded', function() {
     const bmiField = document.getElementById('bmi');
     const resultField = document.getElementById('result');
-    const errorField = document.getElementById('error'); // Error message element
+    const errorField = document.getElementById('error');
+
     const calculate = document.getElementById('calculate1');
-    
+
     calculate.addEventListener('click', function() {
-        let weight = document.getElementById('weight').value;
-        let height = document.getElementById('height').value;
-
-        // Clear previous messages
+        // Clear previous error messages
         errorField.innerText = '';
-        bmiField.innerText = '';
-        resultField.innerText = '';
 
-        // Validate inputs
+        // Check if inputs are filled
+        const weight = document.getElementById('weight').value;
+        const height = document.getElementById('height').value;
+
         if (!weight || !height) {
-            errorField.innerText = 'Both weight and height are required to calculate BMI.';
-            return;
+            errorField.innerText = 'You need to fill in both fields before pressing the button!';
+            bmiField.innerText = '';
+            resultField.innerText = '';
+            return; // Exit the function if validation fails
         }
 
-        // Calculate BMI if both inputs are filled
-        let bmi = calculateBMI(weight, height);
-        resultField.innerText = bmi.toFixed(2);
+        // Calculate BMI
+        const bmiResult = calculateBMI();
+        
+        // Display the result
+        resultField.innerText = `Your BMI is: ${bmiResult}`;
 
-        // Determine BMI category
-        if (bmi <= 18.4) {
+        if (bmiResult <= 18.4) {
             bmiField.innerText = 'Underweight';
-        } else if (bmi >= 18.5 && bmi <= 24.9) {
+        } else if (bmiResult >= 18.5 && bmiResult <= 24.9) {
             bmiField.innerText = 'Normal';
-        } else if (bmi >= 25 && bmi <= 39.9) {
+        } else if (bmiResult >= 25 && bmiResult <= 39.9) {
             bmiField.innerText = 'Overweight';
         } else {
             bmiField.innerText = 'Obese';
         }
+
+        // Clear input fields after calculation
+        document.getElementById('weight').value = '';
+        document.getElementById('height').value = '';
     });
 });
 
-function calculateBMI(weight, height) {
-    let w = parseFloat(weight);
-    let h = parseFloat(height);
-    return w / (h ** 2);
+function calculateBMI() {
+    const weight = document.getElementById('weight').value;
+    const height = document.getElementById('height').value;
+
+    const w = parseFloat(weight);
+    const h = parseFloat(height);
+
+    // BMI = kg/m2 where kg is a person's weight in kilograms and m2 is their height in metres squared
+    const bmi = w / (h ** 2);
+    return parseFloat(bmi.toFixed(2));
 }
