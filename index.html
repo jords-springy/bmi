@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI Calculator</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="./script/script.js"></script>
+    <script src="./script/script.js" defer></script> <!-- Added defer for better loading -->
 </head>
 <body>
-    <h1 class="heading">BMI Calculator: Kgs & Meters</h1>
-    <div class="container">
-        <label for="weight">Weight in KGs</label>
-        <input type="number" step="any" id="weight">
+    <div class="main-container">
+        <h1 class="heading">🏋️‍♀️ BMI Calculator</h1>
+        <div class="container">
+            <label for="weight">Weight in KGs</label>
+            <input type="number" step="any" id="weight" placeholder="Enter weight in KGs">
 
-        <label for="height">Height in Meters</label>
-        <input type="number" step="any" id="height">
+            <label for="height">Height in Meters</label>
+            <input type="number" step="any" id="height" placeholder="Enter height in meters">
 
-        <!-- Error message element -->
-        <p id="error" class="error-message"></p>
+            <p id="error" class="error-message"></p>
 
-        <!-- Calculate button -->
-        <button class="submit" type="button" id="calculate1">Calculate</button>
+            <button class="submit" type="button" id="calculate1">Calculate BMI</button>
 
-        <!-- BMI result -->
-        <p id="bmi" class="result"></p>
-        <p id="result" class="result"></p>
+            <div class="results">
+                <p id="bmi" class="result"></p>
+                <p id="result" class="result"></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
