@@ -27,14 +27,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Display the result
         resultField.innerText = `Your BMI is: ${bmiResult}`;
 
-        if (bmiResult <= 18.4) {
-            bmiField.innerText = 'Underweight';
-        } else if (bmiResult >= 18.5 && bmiResult <= 24.9) {
-            bmiField.innerText = 'Normal';
-        } else if (bmiResult >= 25 && bmiResult <= 39.9) {
-            bmiField.innerText = 'Overweight';
+        // Determine BMI category based on the calculated result
+        if (bmiResult > 0) {
+            if (bmiResult <= 18.4) {
+                bmiField.innerText = 'Underweight';
+            } else if (bmiResult >= 18.5 && bmiResult <= 24.9) {
+                bmiField.innerText = 'Normal';
+            } else if (bmiResult >= 25 && bmiResult <= 39.9) {
+                bmiField.innerText = 'Overweight';
+            } else {
+                bmiField.innerText = 'Obese';
+            }
         } else {
-            bmiField.innerText = 'Obese';
+            bmiField.innerText = ''; // Reset the BMI field if there's an error
         }
 
         // Clear input fields after calculation
@@ -49,7 +54,7 @@ function calculateBMI(weight, height) {
 
     // Check if weight or height is not a number or less than or equal to zero
     if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) {
-        return 0; // Return 0 or handle error appropriately
+        return 0; // Return 0 to indicate an error in calculation
     }
 
     // BMI = kg/m^2 where kg is a person's weight in kilograms and m^2 is their height in metres squared
