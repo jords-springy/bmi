@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const weight = weightInput.value;
         const height = heightInput.value;
 
+        // Validate the inputs
         if (!weight || !height) {
             errorField.innerText = 'You need to fill in both fields before pressing the button!';
             bmiField.innerText = '';
@@ -24,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Calculate BMI
         const bmiResult = calculateBMI(weight, height);
         
-        // Display the result
-        resultField.innerText = `Your BMI is: ${bmiResult}`;
-
-        // Determine BMI category based on the calculated result
+        // Check if bmiResult is valid (greater than 0)
         if (bmiResult > 0) {
+            // Display the result
+            resultField.innerText = `Your BMI is: ${bmiResult}`;
+            // Determine BMI category based on the calculated result
             if (bmiResult <= 18.4) {
                 bmiField.innerText = 'Underweight';
             } else if (bmiResult >= 18.5 && bmiResult <= 24.9) {
@@ -39,7 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 bmiField.innerText = 'Obese';
             }
         } else {
-            bmiField.innerText = ''; // Reset the BMI field if there's an error
+            resultField.innerText = ''; // Reset the result field if there's an error
+            bmiField.innerText = ''; // Reset the BMI category field
+            errorField.innerText = 'Invalid input for weight or height!'; // Provide error feedback
         }
 
         // Clear input fields after calculation
